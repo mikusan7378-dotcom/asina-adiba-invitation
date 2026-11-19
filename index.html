@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uz">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,14 +14,18 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  background: #f8eaf0;
+  min-height: 100%;
+  background: #fdf6f8;
+  font-family: Georgia, serif;
 }
 
 .invitation {
+  position: relative;
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
   overflow: hidden;
+  background: #fdf6f8;
 }
 
 .invitation img {
@@ -29,6 +33,45 @@ html, body {
   width: 175%;
   margin-left: -37.5%;
   height: auto;
+}
+
+/* Кликабельные зоны поверх кнопок на макете */
+.map-btn {
+  position: absolute;
+  left: 24%;
+  width: 52%;
+  height: 2.3%;
+  z-index: 10;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.yandex-btn {
+  bottom: 8.6%;
+}
+
+.google-btn {
+  bottom: 5.8%;
+}
+
+/* Живой таймер обратного отсчёта */
+.live-timer {
+  position: absolute;
+  bottom: 1.55%;
+  left: 14%;
+  width: 72%;
+  height: 2.7%;
+  background: #fffdfb;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(18px, 5.5vw, 26px);
+  font-weight: bold;
+  color: #4a353d;
+  letter-spacing: 2px;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
 .music {
@@ -53,13 +96,27 @@ html, body {
 
 <main class="invitation">
   <img src="YANDEX%20XARITASI.png" alt="Asina va Adiba">
+
+  <a class="map-btn yandex-btn"
+     href="https://yandex.uz/maps/?text=Jizzax%20shahri,%20Zilol%20mahallasi,%20Sug%27diyona%20ko%27chasi"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Yandex Xaritasi"></a>
+
+  <a class="map-btn google-btn"
+     href="https://www.google.com/maps/search/?api=1&query=Jizzax+shahri,+Zilol+mahallasi,+Sug%27diyona+ko%27chasi"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Google Maps"></a>
+
+  <div class="live-timer" id="timer">00 : 00 : 00 : 00</div>
 </main>
 
-<audio id="music" loop>
+<audio id="music" loop preload="metadata">
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<button class="music" onclick="toggleMusic()" id="musicButton">
+<button class="music" onclick="toggleMusic()" id="musicButton" aria-label="Музыка">
   ♫
 </button>
 
@@ -72,13 +129,42 @@ function toggleMusic() {
     music.play().then(() => {
       button.textContent = "Ⅱ";
     }).catch(() => {
-      button.textContent = "♫";
+      alert("Проверьте, что файл music.mp3 загружен в корень репозитория GitHub.");
     });
   } else {
     music.pause();
     button.textContent = "♫";
   }
 }
+
+// Целевая дата: 21 ноября 2026, 11:00 (Узбекистан, UTC+5)
+const eventDate = new Date("2026-11-21T11:00:00+05:00").getTime();
+
+function updateTimer() {
+  const now = Date.now();
+  const diff = eventDate - now;
+  const timerEl = document.getElementById("timer");
+
+  if (diff <= 0) {
+    timerEl.textContent = "TO'Y BOSHLANDI!";
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  const d = String(days).padStart(2, "0");
+  const h = String(hours).padStart(2, "0");
+  const m = String(minutes).padStart(2, "0");
+  const s = String(seconds).padStart(2, "0");
+
+  timerEl.textContent = `${d} : ${h} : ${m} : ${s}`;
+}
+
+setInterval(updateTimer, 1000);
+updateTimer();
 </script>
 
 </body>
