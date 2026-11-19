@@ -26,7 +26,6 @@ html, body {
   margin: 0 auto;
   overflow: hidden;
   background: #fdf6f8;
-  padding-bottom: 28px;
 }
 
 .invitation img {
@@ -36,92 +35,92 @@ html, body {
   height: auto;
 }
 
-/* Кликабельные зоны поверх кнопок на макете */
+/* Кликабельные зоны поверх кнопок на картинке */
 .map-btn {
   position: absolute;
-  left: 14%;
-  width: 72%;
-  height: 2.3%;
+  left: 28%;
+  width: 50%;
+  height: 1.9%;
   z-index: 10;
-  border-radius: 20px;
+  border-radius: 14px;
   cursor: pointer;
   transition: transform 0.15s ease, background 0.2s ease;
 }
 
 .map-btn:active {
   transform: scale(0.98);
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .yandex-btn {
-  bottom: 10.6%;
+  bottom: 8.65%;
 }
 
 .google-btn {
-  bottom: 7.8%;
+  bottom: 5.95%;
 }
 
-/* Отдельный живой таймер под картинкой */
-.timer-box {
-  margin: 14px auto 0;
-  width: calc(100% - 24px);
-  max-width: 440px;
-  padding: 14px 12px;
-  background: #fffdfb;
-  border: 1px solid #edd6df;
-  border-radius: 18px;
-  box-shadow: 0 6px 20px rgba(168, 92, 125, 0.12);
-  text-align: center;
+/* Живой таймер ровно вместо нарисованного внутри рамки */
+.overlay-timer {
+  position: absolute;
+  bottom: 1.35%;
+  left: 22%;
+  width: 63%;
+  height: 3.3%;
+  background: #f7efe8;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 15;
+  padding: 2px 4px;
 }
 
-.timer-title {
-  font-size: 13px;
-  color: #8b5368;
-  margin-bottom: 8px;
-  letter-spacing: 0.5px;
+.overlay-title {
+  font-size: clamp(9px, 2.7vw, 13px);
+  color: #7d495b;
+  margin-bottom: 2px;
+  letter-spacing: 0.3px;
 }
 
-.timer-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-}
-
-.timer-cell {
-  background: #fdf3f7;
-  border-radius: 12px;
-  padding: 8px 4px;
-}
-
-.timer-num {
-  font-size: 22px;
+.overlay-values {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(4px, 1.5vw, 8px);
+  font-size: clamp(16px, 5vw, 24px);
   font-weight: bold;
-  color: #4a353d;
-  line-height: 1.1;
+  color: #2b2124;
+  line-height: 1;
 }
 
-.timer-num.sec {
-  color: #b83b5e;
+.overlay-values .sec {
+  color: #c82333;
 }
 
-.timer-label {
+.overlay-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 84%;
   margin-top: 3px;
-  font-size: 10px;
-  color: #7c5c68;
+  font-size: clamp(6px, 1.8vw, 8px);
+  color: #6b535b;
   letter-spacing: 0.5px;
 }
 
+/* Кнопка музыки в правом верхнем углу, чтобы не мешать таймеру */
 .music {
   position: fixed;
-  right: 18px;
-  bottom: 22px;
-  width: 58px;
-  height: 58px;
+  right: 16px;
+  top: 18px;
+  width: 50px;
+  height: 50px;
   border: 2px solid #fff;
   border-radius: 50%;
   background: #a85c7d;
   color: white;
-  font-size: 25px;
+  font-size: 22px;
   box-shadow: 0 3px 15px rgba(139, 83, 104, 0.35);
   cursor: pointer;
   z-index: 100;
@@ -146,27 +145,25 @@ html, body {
      rel="noopener noreferrer"
      aria-label="Google Maps"></a>
 
-  <section class="timer-box" aria-label="Tadbirgacha qolgan vaqt">
-    <div class="timer-title">Baxtli diydor onlari yaqin</div>
-    <div class="timer-grid">
-      <div class="timer-cell">
-        <div class="timer-num" id="days">00</div>
-        <div class="timer-label">KUN</div>
-      </div>
-      <div class="timer-cell">
-        <div class="timer-num" id="hours">00</div>
-        <div class="timer-label">SOAT</div>
-      </div>
-      <div class="timer-cell">
-        <div class="timer-num" id="minutes">00</div>
-        <div class="timer-label">DAQIQA</div>
-      </div>
-      <div class="timer-cell">
-        <div class="timer-num sec" id="seconds">00</div>
-        <div class="timer-label">SONIYA</div>
-      </div>
+  <!-- Живой таймер поверх старого -->
+  <div class="overlay-timer" aria-label="Tadbirgacha qolgan vaqt">
+    <div class="overlay-title" id="timerTitle">Baxtli diydor onlari yaqin</div>
+    <div class="overlay-values">
+      <span id="days">01</span>
+      <span>:</span>
+      <span id="hours">08</span>
+      <span>:</span>
+      <span id="minutes">10</span>
+      <span>:</span>
+      <span class="sec" id="seconds">00</span>
     </div>
-  </section>
+    <div class="overlay-labels">
+      <span>KUN</span>
+      <span>SOAT</span>
+      <span>DAQIQA</span>
+      <span>SONIYA</span>
+    </div>
+  </div>
 </main>
 
 <audio id="music" loop preload="metadata">
@@ -199,7 +196,7 @@ const eventDate = new Date("2026-11-21T11:00:00+05:00").getTime();
 
 function updateTimer() {
   const diff = eventDate - Date.now();
-  const titleEl = document.querySelector(".timer-title");
+  const titleEl = document.getElementById("timerTitle");
 
   if (diff <= 0) {
     titleEl.textContent = "Baxtli on boshlandi!";
