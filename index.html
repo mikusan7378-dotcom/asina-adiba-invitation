@@ -60,13 +60,13 @@ html, body {
   bottom: 5.95%;
 }
 
-/* Живой таймер ровно вместо нарисованного внутри рамки */
+/* Живой таймер ровно вместо старого, с полным перекрытием старой надписи */
 .overlay-timer {
   position: absolute;
-  bottom: 1.35%;
+  bottom: 1.55%;
   left: 22%;
   width: 63%;
-  height: 3.3%;
+  height: 3.55%;
   background: #f7efe8;
   border-radius: 8px;
   display: flex;
@@ -109,13 +109,13 @@ html, body {
   letter-spacing: 0.5px;
 }
 
-/* Кнопка музыки в правом верхнем углу, чтобы не мешать таймеру */
+/* Кнопка музыки в правом нижнем углу */
 .music {
   position: fixed;
-  right: 16px;
-  top: 18px;
-  width: 50px;
-  height: 50px;
+  right: 14px;
+  bottom: 18px;
+  width: 52px;
+  height: 52px;
   border: 2px solid #fff;
   border-radius: 50%;
   background: #a85c7d;
@@ -153,7 +153,7 @@ html, body {
       <span>:</span>
       <span id="hours">08</span>
       <span>:</span>
-      <span id="minutes">10</span>
+      <span id="minutes">08</span>
       <span>:</span>
       <span class="sec" id="seconds">00</span>
     </div>
@@ -195,7 +195,8 @@ function toggleMusic() {
 const eventDate = new Date("2026-11-21T11:00:00+05:00").getTime();
 
 function updateTimer() {
-  const diff = eventDate - Date.now();
+  const now = Date.now();
+  const diff = eventDate - now;
   const titleEl = document.getElementById("timerTitle");
 
   if (diff <= 0) {
