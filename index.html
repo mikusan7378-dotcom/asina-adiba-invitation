@@ -60,13 +60,13 @@ html, body {
   bottom: 5.95%;
 }
 
-/* Живой таймер ровно вместо старого, с полным перекрытием старой надписи */
+/* Живой таймер ровно вместо старого, верхний край увеличен до 3.9% */
 .overlay-timer {
   position: absolute;
   bottom: 1.55%;
   left: 22%;
   width: 63%;
-  height: 3.55%;
+  height: 3.9%;
   background: #f7efe8;
   border-radius: 8px;
   display: flex;
@@ -139,89 +139,4 @@ html, body {
      rel="noopener noreferrer"
      aria-label="Yandex Xaritasi"></a>
 
-  <a class="map-btn google-btn"
-     href="https://www.google.com/maps/place/40%C2%B010'26.5%22N+67%C2%B050'39.2%22E/@40.1740008,67.8433181,398m/data=!3m1!1e3!4m4!3m3!8m2!3d40.174039!4d67.844209?entry=ttu&g_ep=EgoyMDI2MTExNy4wIKXMDSoASAFQAw%3D%3D"
-     target="_blank"
-     rel="noopener noreferrer"
-     aria-label="Google Maps"></a>
-
-  <!-- Живой таймер поверх старого -->
-  <div class="overlay-timer" aria-label="Tadbirgacha qolgan vaqt">
-    <div class="overlay-title" id="timerTitle">Baxtli diydor onlari yaqin</div>
-    <div class="overlay-values">
-      <span id="days">01</span>
-      <span>:</span>
-      <span id="hours">08</span>
-      <span>:</span>
-      <span id="minutes">08</span>
-      <span>:</span>
-      <span class="sec" id="seconds">00</span>
-    </div>
-    <div class="overlay-labels">
-      <span>KUN</span>
-      <span>SOAT</span>
-      <span>DAQIQA</span>
-      <span>SONIYA</span>
-    </div>
-  </div>
-</main>
-
-<audio id="music" loop preload="metadata">
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<button class="music" onclick="toggleMusic()" id="musicButton" aria-label="Музыка">
-  ♫
-</button>
-
-<script>
-const music = document.getElementById("music");
-const button = document.getElementById("musicButton");
-
-function toggleMusic() {
-  if (music.paused) {
-    music.play().then(() => {
-      button.textContent = "Ⅱ";
-    }).catch(() => {
-      button.textContent = "♫";
-    });
-  } else {
-    music.pause();
-    button.textContent = "♫";
-  }
-}
-
-// Целевая дата: 21 ноября 2026, 11:00 (Узбекистан, UTC+5)
-const eventDate = new Date("2026-11-21T11:00:00+05:00").getTime();
-
-function updateTimer() {
-  const now = Date.now();
-  const diff = eventDate - now;
-  const titleEl = document.getElementById("timerTitle");
-
-  if (diff <= 0) {
-    titleEl.textContent = "Baxtli on boshlandi!";
-    document.getElementById("days").textContent = "00";
-    document.getElementById("hours").textContent = "00";
-    document.getElementById("minutes").textContent = "00";
-    document.getElementById("seconds").textContent = "00";
-    return;
-  }
-
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-
-  document.getElementById("days").textContent = String(days).padStart(2, "0");
-  document.getElementById("hours").textContent = String(hours).padStart(2, "0");
-  document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
-  document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
-}
-
-setInterval(updateTimer, 1000);
-updateTimer();
-</script>
-
-</body>
-</html>
+  <a class="map
