@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asina va Adiba | Beshiq to'yi</title>
+<style>
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: #f9edf2;
+  font-family: Georgia, serif;
+  color: #684052;
+}
+.invitation {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.music {
+  position: fixed;
+  right: 18px;
+  bottom: 20px;
+  border: none;
+  border-radius: 50px;
+  padding: 13px 18px;
+  background: #a85c7d;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  z-index: 10;
+}
+</style>
+</head>
+<body>
+<main class="invitation">
+  <img src="invitation.png" alt="Приглашение на праздник Asina va Adiba">
+</main>
+
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music" onclick="toggleMusic()" id="musicButton">
+  ♫ Включить музыку
+</button>
+
+<script>
+const music = document.getElementById("music");
+const button = document.getElementById("musicButton");
+
+function toggleMusic() {
+  if (music.paused) {
+    music.play().then(() => {
+      button.textContent = "♫ Выключить музыку";
+    }).catch(() => {
+      button.textContent = "Попробовать ещё";
+    });
+  } else {
+    music.pause();
+    button.textContent = "♫ Включить музыку";
+  }
+}
+</script>
+</body>
+</html>
