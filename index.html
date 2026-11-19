@@ -26,6 +26,7 @@ html, body {
   margin: 0 auto;
   overflow: hidden;
   background: #fdf6f8;
+  padding-bottom: 28px;
 }
 
 .invitation img {
@@ -53,11 +54,61 @@ html, body {
 }
 
 .yandex-btn {
-  bottom: 8.6%;
+  bottom: 10.6%;
 }
 
 .google-btn {
-  bottom: 5.8%;
+  bottom: 7.8%;
+}
+
+/* Отдельный живой таймер под картинкой */
+.timer-box {
+  margin: 14px auto 0;
+  width: calc(100% - 24px);
+  max-width: 440px;
+  padding: 14px 12px;
+  background: #fffdfb;
+  border: 1px solid #edd6df;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(168, 92, 125, 0.12);
+  text-align: center;
+}
+
+.timer-title {
+  font-size: 13px;
+  color: #8b5368;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.timer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.timer-cell {
+  background: #fdf3f7;
+  border-radius: 12px;
+  padding: 8px 4px;
+}
+
+.timer-num {
+  font-size: 22px;
+  font-weight: bold;
+  color: #4a353d;
+  line-height: 1.1;
+}
+
+.timer-num.sec {
+  color: #b83b5e;
+}
+
+.timer-label {
+  margin-top: 3px;
+  font-size: 10px;
+  color: #7c5c68;
+  letter-spacing: 0.5px;
 }
 
 .music {
@@ -94,6 +145,28 @@ html, body {
      target="_blank"
      rel="noopener noreferrer"
      aria-label="Google Maps"></a>
+
+  <section class="timer-box" aria-label="Tadbirgacha qolgan vaqt">
+    <div class="timer-title">Baxtli diydor onlari yaqin</div>
+    <div class="timer-grid">
+      <div class="timer-cell">
+        <div class="timer-num" id="days">00</div>
+        <div class="timer-label">KUN</div>
+      </div>
+      <div class="timer-cell">
+        <div class="timer-num" id="hours">00</div>
+        <div class="timer-label">SOAT</div>
+      </div>
+      <div class="timer-cell">
+        <div class="timer-num" id="minutes">00</div>
+        <div class="timer-label">DAQIQA</div>
+      </div>
+      <div class="timer-cell">
+        <div class="timer-num sec" id="seconds">00</div>
+        <div class="timer-label">SONIYA</div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <audio id="music" loop preload="metadata">
@@ -120,6 +193,36 @@ function toggleMusic() {
     button.textContent = "♫";
   }
 }
+
+// Целевая дата: 21 ноября 2026, 11:00 (Узбекистан, UTC+5)
+const eventDate = new Date("2026-11-21T11:00:00+05:00").getTime();
+
+function updateTimer() {
+  const diff = eventDate - Date.now();
+  const titleEl = document.querySelector(".timer-title");
+
+  if (diff <= 0) {
+    titleEl.textContent = "Baxtli on boshlandi!";
+    document.getElementById("days").textContent = "00";
+    document.getElementById("hours").textContent = "00";
+    document.getElementById("minutes").textContent = "00";
+    document.getElementById("seconds").textContent = "00";
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  document.getElementById("days").textContent = String(days).padStart(2, "0");
+  document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+  document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+  document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+}
+
+setInterval(updateTimer, 1000);
+updateTimer();
 </script>
 
 </body>
