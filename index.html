@@ -1,48 +1,60 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Asina va Adiba | Beshiq to'yi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asina va Adiba</title>
+
 <style>
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: #f9edf2;
-  font-family: Georgia, serif;
-  color: #684052;
+* {
+  box-sizing: border-box;
 }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background: #f8eaf0;
+}
+
+body {
+  font-family: Georgia, serif;
+}
+
 .invitation {
   width: 100%;
   max-width: 600px;
   margin: auto;
-  text-align: center;
 }
-img {
+
+.invitation img {
+  display: block;
   width: 100%;
   height: auto;
-  display: block;
 }
+
 .music {
   position: fixed;
   right: 18px;
-  bottom: 20px;
-  border: none;
-  border-radius: 50px;
-  padding: 13px 18px;
+  bottom: 22px;
+  width: 58px;
+  height: 58px;
+  border: 2px solid #fff;
+  border-radius: 50%;
   background: #a85c7d;
   color: white;
-  font-size: 15px;
+  font-size: 25px;
+  box-shadow: 0 3px 15px #8b536855;
   cursor: pointer;
-  z-index: 10;
+  z-index: 100;
 }
 </style>
 </head>
+
 <body>
+
 <main class="invitation">
-<img src="YANDEX%20XARITASI.png" alt="Приглашение на праздник Asina va Adiba">
+  <img src="YANDEX%20XARITASI.png" alt="Asina va Adiba">
 </main>
 
 <audio id="music" loop>
@@ -50,7 +62,7 @@ img {
 </audio>
 
 <button class="music" onclick="toggleMusic()" id="musicButton">
-  ♫ Включить музыку
+  ♫
 </button>
 
 <script>
@@ -60,15 +72,16 @@ const button = document.getElementById("musicButton");
 function toggleMusic() {
   if (music.paused) {
     music.play().then(() => {
-      button.textContent = "♫ Выключить музыку";
+      button.textContent = "Ⅱ";
     }).catch(() => {
-      button.textContent = "Попробовать ещё";
+      button.textContent = "♫";
     });
   } else {
     music.pause();
-    button.textContent = "♫ Включить музыку";
+    button.textContent = "♫";
   }
 }
 </script>
+
 </body>
 </html>
