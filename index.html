@@ -35,54 +35,6 @@ html, body {
   height: auto;
 }
 
-/* Мягкие размытые переходы на стыках между блоками */
-.seam-blur {
-  position: absolute;
-  left: -5%;
-  width: 110%;
-  height: 3.2%;
-  pointer-events: none;
-  z-index: 5;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-
-/* Шов 1: между замком и фото девочек */
-.seam-1 {
-  top: 23.8%;
-  background: linear-gradient(
-    to bottom,
-    rgba(246, 234, 240, 0) 0%,
-    rgba(246, 234, 240, 0.85) 45%,
-    rgba(248, 235, 240, 0.85) 55%,
-    rgba(248, 235, 240, 0) 100%
-  );
-}
-
-/* Шов 2: между фото девочек и блоком TAKLIFNOMA */
-.seam-2 {
-  top: 49.0%;
-  background: linear-gradient(
-    to bottom,
-    rgba(250, 238, 242, 0) 0%,
-    rgba(252, 243, 246, 0.9) 45%,
-    rgba(253, 246, 248, 0.9) 55%,
-    rgba(253, 246, 248, 0) 100%
-  );
-}
-
-/* Шов 3: между блоком TAKLIFNOMA и календарём */
-.seam-3 {
-  top: 74.2%;
-  background: linear-gradient(
-    to bottom,
-    rgba(253, 246, 248, 0) 0%,
-    rgba(252, 244, 247, 0.9) 45%,
-    rgba(250, 242, 246, 0.9) 55%,
-    rgba(250, 242, 246, 0) 100%
-  );
-}
-
 /* Кликабельные зоны поверх кнопок на макете */
 .map-btn {
   position: absolute;
@@ -144,11 +96,6 @@ html, body {
 
 <main class="invitation">
   <img src="YANDEX%20XARITASI.png" alt="Asina va Adiba">
-
-  <!-- Размытые переходы на стыках -->
-  <div class="seam-blur seam-1"></div>
-  <div class="seam-blur seam-2"></div>
-  <div class="seam-blur seam-3"></div>
 
   <a class="map-btn yandex-btn"
      href="https://yandex.uz/maps/?text=Jizzax%20shahri,%20Zilol%20mahallasi,%20Sug%27diyona%20ko%27chasi"
