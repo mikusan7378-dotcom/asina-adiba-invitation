@@ -60,25 +60,6 @@ html, body {
   bottom: 5.8%;
 }
 
-/* Живой таймер поверх нижнего блока */
-.live-timer {
-  position: absolute;
-  bottom: 1.55%;
-  left: 6%;
-  width: 88%;
-  height: 2.7%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: clamp(20px, 6.5vw, 30px);
-  font-weight: bold;
-  color: #4a353d;
-  text-shadow: 0 1px 8px rgba(255, 253, 251, 0.95), 0 0 14px rgba(255, 253, 251, 0.9);
-  letter-spacing: 2px;
-  z-index: 10;
-  pointer-events: none;
-}
-
 .music {
   position: fixed;
   right: 18px;
@@ -113,8 +94,6 @@ html, body {
      target="_blank"
      rel="noopener noreferrer"
      aria-label="Google Maps"></a>
-
-  <div class="live-timer" id="timer">00 : 00 : 00 : 00</div>
 </main>
 
 <audio id="music" loop preload="metadata">
@@ -141,35 +120,6 @@ function toggleMusic() {
     button.textContent = "♫";
   }
 }
-
-// Целевая дата: 21 ноября 2026, 11:00 (Узбекистан, UTC+5)
-const eventDate = new Date("2026-11-21T11:00:00+05:00").getTime();
-
-function updateTimer() {
-  const now = Date.now();
-  const diff = eventDate - now;
-  const timerEl = document.getElementById("timer");
-
-  if (diff <= 0) {
-    timerEl.textContent = "TO'Y BOSHLANDI!";
-    return;
-  }
-
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-
-  const d = String(days).padStart(2, "0");
-  const h = String(hours).padStart(2, "0");
-  const m = String(minutes).padStart(2, "0");
-  const s = String(seconds).padStart(2, "0");
-
-  timerEl.textContent = `${d} : ${h} : ${m} : ${s}`;
-}
-
-setInterval(updateTimer, 1000);
-updateTimer();
 </script>
 
 </body>
